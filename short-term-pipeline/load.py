@@ -7,7 +7,7 @@ import pymssql
 DATA_PATH = './data/clean-plant-measurements.csv'
 
 
-def get_connection_to_db() -> pymssql.connection:
+def get_connection_to_db() -> pymssql.Connection:
     '''Gets a pymssql connection to the short term MS SQL short-term DB'''
     load_dotenv()
     return pymssql.connect(host=os.getenv('DB_HOST'),
@@ -25,7 +25,7 @@ def get_measurements(path: str = DATA_PATH) -> list[dict]:
         return [tuple(row) for row in csv_reader]
 
 
-def upload_row(row: tuple, conn: pymssql.connection) -> None:
+def upload_row(row: tuple, conn: pymssql.Connection) -> None:
     '''Uploads a single measurement row to the database for the specified connection.'''
     cur = conn.cursor()
     sql = '''
