@@ -1,6 +1,8 @@
+"""Tests for the transform script"""
+
+import os
 import pandas as pd
 import pytest
-import os
 from transform import transform_to_datetime, round_floats, save_clean_data_to_csv
 
 
@@ -38,7 +40,7 @@ def test_round_floats(sample_data):
     assert rounded["moisture"][1] == 35.46
 
 
-def test_save_clean_data_to_csv(sample_data, tmp_path):
+def test_save_clean_data_to_csv(sample_data):
     """Test that clean data is saved correctly to a CSV file"""
     save_clean_data_to_csv(sample_data)
 

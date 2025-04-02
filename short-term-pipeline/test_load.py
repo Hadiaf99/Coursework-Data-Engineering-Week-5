@@ -1,7 +1,10 @@
+"""Tests for the load script"""
+
 from unittest.mock import mock_open
 import pytest
 from unittest.mock import patch, MagicMock
-from load import get_connection_to_db, get_measurements, upload_many_rows, ingress_measurements_to_db
+from load import (get_connection_to_db, get_measurements, upload_many_rows,
+                  ingress_measurements_to_db)
 
 
 @pytest.fixture
@@ -24,7 +27,8 @@ def test_get_connection_to_db(mock_connect):
     assert conn is not None
 
 
-@patch("builtins.open", new_callable=mock_open, read_data="plant_id,temperature,moisture,last_watered,measurement_time\n1,25.5,40,2024-03-01,2024-03-02 12:30:00\n2,22.0,35,2024-03-02,2024-03-03 15:45:00\n")
+@patch("builtins.open", new_callable=mock_open,
+       read_data="plant_id,temperature,moisture,last_watered,measurement_time\n1,25.5,40,2024-03-01,2024-03-02 12:30:00\n2,22.0,35,2024-03-02,2024-03-03 15:45:00\n")
 def test_get_measurements(mock_file):
     """Test that measurements are correctly read from CSV"""
     measurements = get_measurements()

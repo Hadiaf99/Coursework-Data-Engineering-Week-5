@@ -1,7 +1,9 @@
-import pytest
-from unittest.mock import patch, MagicMock
-from extract import get_plant_data, save_to_csv
+"""Tests for the extract script"""
+
 import csv
+from unittest.mock import patch, MagicMock
+import pytest
+from extract import get_plant_data, save_to_csv
 
 
 @patch("extract.requests.get")
